@@ -55,6 +55,7 @@
     <Compile Include="Lists\LinkedListTests.cs" />
     <Compile Include="Lists\QueueTests.cs" />
     <Compile Include="Lists\StackTests.cs" />
+    <Compile Include="Maps\HashTableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trees\HeapTests.cs" />
   </ItemGroup>
