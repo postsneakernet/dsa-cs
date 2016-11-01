@@ -62,6 +62,7 @@
     <Compile Include="Trees\BinarySearchTree.cs" />
     <Compile Include="Trees\Heap.cs" />
     <Compile Include="Trees\RedBlackTree.cs" />
+    <Compile Include="Trees\Treap.cs" />
     <Compile Include="Trees\Trie.cs" />
   </ItemGroup>
   <ItemGroup>
