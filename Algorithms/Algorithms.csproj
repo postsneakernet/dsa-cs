@@ -64,6 +64,7 @@
     <Compile Include="Math\Fibonacci.cs" />
     <Compile Include="Math\FizzBuzz.cs" />
     <Compile Include="Math\Kadane.cs" />
+    <Compile Include="Math\Knights.cs" />
     <Compile Include="Math\MatrixRotation.cs" />
     <Compile Include="Math\MedianIntegerStream.cs" />
     <Compile Include="Math\Newton.cs" />
