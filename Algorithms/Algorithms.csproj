@@ -84,13 +84,17 @@
     <Compile Include="Strings\EditDistance.cs" />
     <Compile Include="Strings\Palindrome.cs" />
     <Compile Include="Strings\Reverse.cs" />
-    <Compile Include="Trees\IterativeTraversal.cs" />
-    <Compile Include="Trees\RecursiveTraversal.cs" />
+    <Compile Include="Trees\TreeOperationsIter.cs" />
+    <Compile Include="Trees\TreeOperationsRecur.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataStructures\DataStructures.csproj">
+      <Project>{2c9dc01c-1d93-484e-a088-6063cd546d29}</Project>
+      <Name>DataStructures</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DSA\DSA.csproj">
       <Project>{746b632c-04c1-474e-a6c9-fffc1a562e6f}</Project>
       <Name>DSA</Name>

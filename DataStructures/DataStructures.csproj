@@ -61,6 +61,7 @@
     <Compile Include="Trees\AvlTree.cs" />
     <Compile Include="Trees\BinarySearchTree.cs" />
     <Compile Include="Trees\Heap.cs" />
+    <Compile Include="Trees\INode.cs" />
     <Compile Include="Trees\RedBlackTree.cs" />
     <Compile Include="Trees\Treap.cs" />
     <Compile Include="Trees\Trie.cs" />
@@ -69,10 +70,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Algorithms\Algorithms.csproj">
-      <Project>{b494302a-1973-4c48-9ac6-1db908b165e5}</Project>
-      <Name>Algorithms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DSA\DSA.csproj">
       <Project>{746b632c-04c1-474e-a6c9-fffc1a562e6f}</Project>
       <Name>DSA</Name>

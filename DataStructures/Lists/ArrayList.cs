@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructures.Lists
 {
-    public class ArrayList : System.Collections.IEnumerable
+    public class ArrayList<T> : System.Collections.IEnumerable where T : IComparable
     {
         private const int _capacity = 10;
-        private int[] _items;
+        private T[] _items;
         private int _end; // index of last item
 
         public ArrayList() : this(_capacity) { }
@@ -19,7 +15,7 @@ namespace DataStructures.Lists
 
         public int Capacity { get { return _items.Length; } }
 
-        public int Get(int index)
+        public T Get(int index)
         {
             if (index < 0 || index > _end)
             {
@@ -29,11 +25,11 @@ namespace DataStructures.Lists
             return _items[index];
         }
 
-        public int GetFront() { return Get(0); }
+        public T GetFront() { return Get(0); }
 
-        public int GetBack() { return Get(_end); }
+        public T GetBack() { return Get(_end); }
 
-        public void AddAt(int index, int item)
+        public void AddAt(int index, T item)
         {
             if (index < 0 || index > _end + 1)
             {
@@ -54,24 +50,24 @@ namespace DataStructures.Lists
             ++_end;
         }
 
-        public void Add(int item)
+        public void Add(T item)
         {
             AddAt(_end + 1, item);
         }
 
-        public void AddFront(int item)
+        public void AddFront(T item)
         {
             AddAt(0, item);
         }
 
-        public int RemoveAt(int index)
+        public T RemoveAt(int index)
         {
             if (index < 0 || index > _end)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            int item = _items[index];
+            T item = _items[index];
 
             if (index < _end)
             {
@@ -83,23 +79,23 @@ namespace DataStructures.Lists
             return item;
         }
 
-        public int Remove()
+        public T Remove()
         {
             return RemoveAt(_end);
         }
 
-        public int RemoveFront()
+        public T RemoveFront()
         {
             return RemoveAt(0);
         }
 
-        public int FindFirstOccurrence(int item)
+        public int FindFirstOccurrence(T item)
         {
             int index = -1;
 
             for (int i = 0; i < Size; ++i)
             {
-                if (_items[i] == item)
+                if (_items[i].CompareTo(item) == 0)
                 {
                     index = i;
                     break;
@@ -130,7 +126,7 @@ namespace DataStructures.Lists
 
         private void Resize(int capacity)
         {
-            int[] a = new int[capacity];
+            T[] a = new T[capacity];
 
             for (int i = 0; i < Size; ++i)
             {
@@ -168,7 +164,7 @@ namespace DataStructures.Lists
                 throw new ArgumentOutOfRangeException();
             }
 
-            _items = new int[capacity];
+            _items = new T[capacity];
             _end = -1;
         }
     }

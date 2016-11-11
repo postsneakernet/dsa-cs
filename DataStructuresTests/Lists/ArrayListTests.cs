@@ -11,12 +11,12 @@ namespace DataStructures.Lists.Tests
     [TestClass()]
     public class ArrayListTests
     {
-        ArrayList al;
+        ArrayList<int> al;
 
         [TestInitialize()]
         public void TestInitialize()
         {
-            al = new ArrayList();
+            al = new ArrayList<int>();
             al.Add(1);
             al.Add(2);
             al.Add(3);

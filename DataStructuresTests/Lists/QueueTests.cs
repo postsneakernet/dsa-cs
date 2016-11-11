@@ -11,12 +11,12 @@ namespace DataStructures.Lists.Tests
     [TestClass()]
     public class QueueTests
     {
-        Queue q;
+        Queue<int> q;
 
         [TestInitialize()]
         public void TestInit()
         {
-            q = new Queue();
+            q = new Queue<int>();
         }
 
         [TestMethod()]

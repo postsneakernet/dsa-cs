@@ -3,12 +3,12 @@ using System.Collections;
 
 namespace DataStructures.Lists
 {
-    public class Queue
+    public class Queue<T>
     {
         private const int _capacity = 10;
         private int _front; // index of next to pop
         private int _back; // index of next to push
-        private int[] _items;
+        private T[] _items;
 
         public int Size { get { return _back - _front; } }
         public bool IsEmpty { get { return _front == _back; } }
@@ -20,12 +20,12 @@ namespace DataStructures.Lists
                 throw new ArgumentOutOfRangeException();
             }
 
-            _items = new int[capacity];
+            _items = new T[capacity];
             _front = 0;
             _back = 0;
         }
 
-        public void Enqueue(int item)
+        public void Enqueue(T item)
         {
             if (Size == _items.Length || _back == _items.Length)
             {
@@ -35,7 +35,7 @@ namespace DataStructures.Lists
             _items[_back++] = item;
         }
 
-        public int Dequeue()
+        public T Dequeue()
         {
             if (IsEmpty)
             {
@@ -45,7 +45,7 @@ namespace DataStructures.Lists
             return _items[_front++];
         }
 
-        public int Peek()
+        public T Peek()
         {
             if (IsEmpty)
             {
@@ -66,11 +66,11 @@ namespace DataStructures.Lists
                 ShiftLeft(_items);
             } else
             {
-                ShiftLeft(new int[_items.Length * 2]);
+                ShiftLeft(new T[_items.Length * 2]);
             }
         }
 
-        private void ShiftLeft(int[] dst)
+        private void ShiftLeft(T[] dst)
         {
             for (int i = _front; i < _back; ++i)
             {
