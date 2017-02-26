@@ -74,7 +74,7 @@ namespace DataStructures.Lists
         {
             for (int i = _front; i < _back; ++i)
             {
-                dst[i - +_front] = _items[i];
+                dst[i - _front] = _items[i];
             }
 
             _items = dst;
