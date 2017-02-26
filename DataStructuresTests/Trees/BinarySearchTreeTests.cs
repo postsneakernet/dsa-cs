@@ -118,5 +118,73 @@ namespace DataStructures.Trees.Tests
                 Assert.IsTrue(inOrder.Get(i - 1) <= inOrder.Get(i));
             }
         }
+
+        [TestMethod()]
+        public void FindMinTest()
+        {
+            tree.Insert(3);
+            tree.Insert(9);
+            tree.Insert(8);
+            tree.Insert(1);
+            tree.Insert(6);
+
+            Assert.AreEqual(1, tree.FindMin());
+        }
+
+        [TestMethod()]
+        public void FindMaxTest()
+        {
+            tree.Insert(3);
+            tree.Insert(9);
+            tree.Insert(8);
+            tree.Insert(1);
+            tree.Insert(6);
+
+            Assert.AreEqual(9, tree.FindMax());
+        }
+
+        [TestMethod()]
+        public void ReverseTest()
+        {
+            int[] seed = { 5, 3, 9, 1, 2 };
+
+            foreach (int i in seed)
+            {
+                tree.Insert(i);
+            }
+
+            Assert.IsFalse(tree.IsReversed);
+            tree.Reverse();
+            Assert.IsTrue(tree.IsReversed);
+
+            var inOrder = new ArrayList<int>();
+
+            foreach (int i in tree)
+            {
+                inOrder.Add(i);
+            }
+
+            for (int i = 1; i < inOrder.Size; ++i)
+            {
+                Console.WriteLine("a[{0}]: {1}, a[{2}]: {3}", i - 1, inOrder.Get(i - 1), i, inOrder.Get(i));
+                Assert.IsTrue(inOrder.Get(i - 1) >= inOrder.Get(i));
+            }
+
+            tree.Reverse();
+            Assert.IsFalse(tree.IsReversed);
+
+            inOrder = new ArrayList<int>();
+
+            foreach (int i in tree)
+            {
+                inOrder.Add(i);
+            }
+
+            for (int i = 1; i < inOrder.Size; ++i)
+            {
+                Console.WriteLine("a[{0}]: {1}, a[{2}]: {3}", i - 1, inOrder.Get(i - 1), i, inOrder.Get(i));
+                Assert.IsTrue(inOrder.Get(i - 1) <= inOrder.Get(i));
+            }
+        }
     }
 }

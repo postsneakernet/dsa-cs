@@ -84,6 +84,7 @@
     <Compile Include="Strings\EditDistance.cs" />
     <Compile Include="Strings\Palindrome.cs" />
     <Compile Include="Strings\Reverse.cs" />
+    <Compile Include="Trees\PrettyPrintTree.cs" />
     <Compile Include="Trees\TreeOperationsIter.cs" />
     <Compile Include="Trees\TreeOperationsRecur.cs" />
   </ItemGroup>

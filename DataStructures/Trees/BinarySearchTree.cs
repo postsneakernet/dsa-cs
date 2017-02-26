@@ -6,21 +6,38 @@ namespace DataStructures.Trees
 {
     public class BinarySearchTree<T> : System.Collections.IEnumerable where T : IComparable
     {
-        private INode<T> _root;
+        protected INode<T> _root;
 
         private Random rnd;
 
+        private string _treeType;
+
+        private bool _reversed;
+
         public INode<T> Root { get { return _root; } }
 
-        public BinarySearchTree() { rnd = new Random(); }
+        public bool IsReversed { get { return _reversed; } }
+
+        public BinarySearchTree() : this("bst") { }
+
+        public BinarySearchTree(string treeType)
+        {
+            _treeType = treeType;
+            rnd = new Random();
+        }
+
+        protected INode<T> GetNodeImplementation(T item)
+        {
+            return NodeFactory<T>.GetNodeImplementation(_treeType, item);
+        }
 
         public bool Search(T item) { return Search(Root, item); }
 
-        public void Insert(T item)
+        public virtual void Insert(T item)
         {
             if (Root == null)
             {
-                _root = new BstNode<T>(item);
+                _root = GetNodeImplementation(item);
             }
             else
             {
@@ -28,7 +45,7 @@ namespace DataStructures.Trees
             }
         }
         
-        public bool Remove(T item) { return Remove(Root, item); }
+        public virtual bool Remove(T item) { return Remove(Root, item); }
 
         public System.Collections.IEnumerator GetEnumerator()
         {
@@ -75,13 +92,45 @@ namespace DataStructures.Trees
             }
         }
 
+        public T FindMin()
+        {
+            INode<T> temp = FindMinNode(_root);
+            return (temp != null) ? temp.Item : default(T);
+        }
+
+        protected INode<T> FindMinNode(INode<T> node)
+        {
+            while (node != null && node.Left != null)
+            {
+                node = node.Left;
+            }
+
+            return node;
+        }
+
+        public T FindMax()
+        {
+            INode<T> temp = FindMaxNode(_root);
+            return (temp != null) ? temp.Item : default(T);
+        }
+
+        protected INode<T> FindMaxNode(INode<T> node)
+        {
+            while (node != null && node.Right != null)
+            {
+                node = node.Right;
+            }
+
+            return node;
+        }
+
         private void Insert(INode<T> node, T item)
         {
             if (item.CompareTo(node.Item) < 0)
             {
                 if (node.Left == null)
                 {
-                    node.Left = new BstNode<T>(item);
+                    node.Left = GetNodeImplementation(item);
                 }
                 else
                 {
@@ -92,7 +141,7 @@ namespace DataStructures.Trees
             {
                 if (node.Right == null)
                 {
-                    node.Right = new BstNode<T>(item);
+                    node.Right = GetNodeImplementation(item);
                 }
                 else
                 {
@@ -101,33 +150,25 @@ namespace DataStructures.Trees
             }
         }
 
-        private INode<T> FindPredecessor(INode<T> node)
+        protected INode<T> FindPredecessor(INode<T> node)
         {
             INode<T> temp = null;
 
-            if (node != null && node.Left != null)
+            if (node != null)
             {
-                temp = node.Left;
-                while (temp.Right != null)
-                {
-                    temp = temp.Right;
-                }
+                temp = FindMaxNode(node.Left);
             }
 
             return temp;
         }
 
-        private INode<T> FindSuccessor(INode<T> node)
+        protected INode<T> FindSuccessor(INode<T> node)
         {
             INode<T> temp = null;
 
-            if (node != null && node.Right != null)
+            if (node != null)
             {
-                temp = node.Right;
-                while (temp.Left != null)
-                {
-                    temp = temp.Left;
-                }
+                temp = FindMinNode(node.Right);
             }
 
             return temp;
@@ -218,15 +259,26 @@ namespace DataStructures.Trees
                 return false;
             }
         }
-    }
 
-    public class BstNode<T> : INode<T>
-    {
-        public INode<T> Left { get; set;}
-        public INode<T> Right { get; set; }
-        public T Item { get; set; }
+        public void Reverse()
+        {
+            _reversed = !_reversed;
+            Reverse(_root);
+        }
 
-        public BstNode() { }
-        public BstNode(T item) { Item = item; }
+        private void Reverse(INode<T> node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+
+            INode<T> temp = node.Left;
+            node.Left = node.Right;
+            node.Right = temp;
+
+            Reverse(node.Left);
+            Reverse(node.Right);
+        }
     }
 }
