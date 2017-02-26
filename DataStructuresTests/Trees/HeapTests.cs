@@ -163,7 +163,7 @@ namespace DataStructures.Trees.Tests
         }
 
         [TestMethod()]
-        public void SortTest()
+        public void SortAscTest()
         {
             a = Helpers.BuildRandomArray(30);
             h = Heap.MaxHeapify(a);
@@ -176,6 +176,25 @@ namespace DataStructures.Trees.Tests
             for (int i = 1; i < sortResult.Length; ++i)
             {
                 Assert.IsTrue(sortResult[i - 1] <= sortResult[i], String.Format(
+                    "sortResult[{0}]: {1}, sortResult[{2}]: {3}",
+                    i - 1, sortResult[i - 1], i, sortResult[i]));
+            }
+        }
+
+        [TestMethod()]
+        public void SortDescTest()
+        {
+            a = Helpers.BuildRandomArray(30);
+            h = Heap.MinHeapify(a);
+
+            int[] heapResult = h.ExportArray();
+
+            h.Sort();
+            int[] sortResult = h.ExportArray();
+
+            for (int i = 1; i < sortResult.Length; ++i)
+            {
+                Assert.IsTrue(sortResult[i - 1] >= sortResult[i], String.Format(
                     "sortResult[{0}]: {1}, sortResult[{2}]: {3}",
                     i - 1, sortResult[i - 1], i, sortResult[i]));
             }

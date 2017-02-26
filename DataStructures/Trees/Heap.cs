@@ -204,30 +204,36 @@ namespace DataStructures.Trees
 
             while (left < HeapSize)
             {
-                int greater;
+                int greaterOrLesser;
 
                 if (HeapSize - left == 1)
                 {
-                    greater = left;
+                    greaterOrLesser = left;
                 } else
                 {
-                    greater = (_items[left] >= _items[right]) ? left : right;
+                    greaterOrLesser = GetGreaterOrLesser(_items[left], _items[right], left, right);
                 }
 
-                if (CheckSiftDown(_items[current], _items[greater]))
+                if (CheckSiftDown(_items[current], _items[greaterOrLesser]))
                 {
-                    int temp = _items[greater];
-                    _items[greater] = _items[current];
+                    int temp = _items[greaterOrLesser];
+                    _items[greaterOrLesser] = _items[current];
                     _items[current] = temp;
                 } else
                 {
                     return;
                 }
 
-                current = greater;
+                current = greaterOrLesser;
                 left = current * 2 + 1;
                 right = left + 1;
             }
+        }
+
+        private int GetGreaterOrLesser(int leftItem, int rightItem, int leftIndex, int rightIndex)
+        {
+            if (IsMaxHeap) { return (leftItem >= rightItem) ? leftIndex : rightIndex; }
+            else { return (leftItem <= rightItem) ? leftIndex : rightIndex; }
         }
 
         private bool CheckSiftDown(int current, int greater)
