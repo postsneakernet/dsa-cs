@@ -2,10 +2,10 @@
 
 namespace DataStructures.Trees
 {
-    public class Heap
+    public class Heap<T> where T : IComparable
     {
         private const int _capacity = 10;
-        private int[] _items;
+        private T[] _items;
         private bool _isMaxHeap;
         private int _end; // Index of last item
         private int _heapSize;
@@ -19,22 +19,22 @@ namespace DataStructures.Trees
                 throw new ArgumentOutOfRangeException();
             }
 
-            _items = new int[capacity];
+            _items = new T[capacity];
             _isMaxHeap = isMaxHeap;
             _end = -1;
             _heapSize = 0;
         }
 
-        public Heap(int[] a, bool isMaxHeap)
+        public Heap(T[] a, bool isMaxHeap)
         {
             ReHeapify(a, isMaxHeap);
         }
 
-        public static Heap CreateMaxHeap(int capacity = _capacity) { return new Heap(capacity, true); }
-        public static Heap CreateMinHeap(int capacity = _capacity) { return new Heap(capacity, false); }
+        public static Heap<T> CreateMaxHeap(int capacity = _capacity) { return new Heap<T>(capacity, true); }
+        public static Heap<T> CreateMinHeap(int capacity = _capacity) { return new Heap<T>(capacity, false); }
 
-        public static Heap MaxHeapify(int[] a) { return new Heap(a, true); }
-        public static Heap MinHeapify(int[] a) { return new Heap(a, false); }
+        public static Heap<T> MaxHeapify(T[] a) { return new Heap<T>(a, true); }
+        public static Heap<T> MinHeapify(T[] a) { return new Heap<T>(a, false); }
 
         public bool IsMaxHeap { get { return _isMaxHeap; } }
         public bool IsMinHeap { get { return !_isMaxHeap; } }
@@ -47,7 +47,7 @@ namespace DataStructures.Trees
         public bool IsEmpty { get { return Size == 0; } }
         public int Capacity { get { return _items.Length; } }
 
-        public void Push(int item)
+        public void Push(T item)
         {
             if (Size == _items.Length)
             {
@@ -64,13 +64,13 @@ namespace DataStructures.Trees
             SiftUp();
         }
 
-        public int Peek()
+        public T Peek()
         {
             if (IsEmpty) { throw new ArgumentOutOfRangeException(); }
             return _items[0];
         }
 
-        public int Pop()
+        public T Pop()
         {
             if (IsEmpty) { throw new ArgumentOutOfRangeException(); }
 
@@ -79,7 +79,7 @@ namespace DataStructures.Trees
                 Heapify();
             }
 
-            int item = _items[0];
+            T item = _items[0];
             _items[0] = _items[_end];
             _items[_end--] = item;
             _heapSize = Size;
@@ -88,14 +88,14 @@ namespace DataStructures.Trees
             return item;
         }
 
-        public int[] ExportArray()
+        public T[] ExportArray()
         {
             if (Size == 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
 
-            int[] a = new int[Size];
+            T[] a = new T[Size];
 
             for (int i = 0; i < a.Length; ++i)
             {
@@ -134,19 +134,19 @@ namespace DataStructures.Trees
             }
         }
 
-        public void ReHeapifyMax(int[] a)
+        public void ReHeapifyMax(T[] a)
         {
             ReHeapify(a, true);
         }
 
-        public void ReHeapifyMin(int[] a)
+        public void ReHeapifyMin(T[] a)
         {
             ReHeapify(a, false);
         }
 
-        private void ReHeapify(int[] a, bool isMaxHeap)
+        private void ReHeapify(T[] a, bool isMaxHeap)
         {
-            _items = new int[a.Length];
+            _items = new T[a.Length];
 
             for (int i = 0; i < a.Length; ++i)
             {
@@ -161,7 +161,7 @@ namespace DataStructures.Trees
 
         private void Resize()
         {
-            int[] a = new int[_items.Length * 2];
+            T[] a = new T[_items.Length * 2];
 
             for (int i = 0; i < Size; ++i)
             {
@@ -178,7 +178,7 @@ namespace DataStructures.Trees
 
             while (father >= 0 && CheckSiftUp(_items[current], _items[father]))
             {
-                int temp = _items[father];
+                T temp = _items[father];
                 _items[father] = _items[current];
                 _items[current] = temp;
                 current = father;
@@ -186,10 +186,10 @@ namespace DataStructures.Trees
             }
         }
 
-        private bool CheckSiftUp(int current, int father)
+        private bool CheckSiftUp(T current, T father)
         {
-            if (IsMaxHeap) { return current > father; }
-            else { return current < father; }
+            if (IsMaxHeap) { return current.CompareTo(father) > 0; }
+            else { return current.CompareTo(father) < 0; }
         }
 
         private void SiftDown()
@@ -212,7 +212,7 @@ namespace DataStructures.Trees
 
                 if (CheckSiftDown(_items[current], _items[greaterOrLesser]))
                 {
-                    int temp = _items[greaterOrLesser];
+                    T temp = _items[greaterOrLesser];
                     _items[greaterOrLesser] = _items[current];
                     _items[current] = temp;
                 } else
@@ -226,16 +226,16 @@ namespace DataStructures.Trees
             }
         }
 
-        private int GetGreaterOrLesser(int leftItem, int rightItem, int leftIndex, int rightIndex)
+        private int GetGreaterOrLesser(T leftItem, T rightItem, int leftIndex, int rightIndex)
         {
-            if (IsMaxHeap) { return (leftItem >= rightItem) ? leftIndex : rightIndex; }
-            else { return (leftItem <= rightItem) ? leftIndex : rightIndex; }
+            if (IsMaxHeap) { return (leftItem.CompareTo(rightItem) >= 0) ? leftIndex : rightIndex; }
+            else { return (leftItem.CompareTo(rightItem) <= 0) ? leftIndex : rightIndex; }
         }
 
-        private bool CheckSiftDown(int current, int greater)
+        private bool CheckSiftDown(T current, T greater)
         {
-            if (IsMaxHeap) { return current < greater; }
-            else { return current > greater; }
+            if (IsMaxHeap) { return current.CompareTo(greater) < 0; }
+            else { return current.CompareTo(greater) > 0; }
         }
     }
 }

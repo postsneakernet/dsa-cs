@@ -126,12 +126,13 @@ namespace DataStructures.Graphs
             _edges = (_edges == null) ? new AvlTree<Edge>() : _edges;
 
             return GraphFactory.CreateGraph(this);
-    }
+        }
 
-    public class InvalidStateException : Exception
-    {
-        public InvalidStateException() { }
-        public InvalidStateException(string message) : base(message) { }
-        public InvalidStateException(string message, Exception inner) : base(message, inner) { }
+        public class InvalidStateException : Exception
+        {
+            public InvalidStateException() { }
+            public InvalidStateException(string message) : base(message) { }
+            public InvalidStateException(string message, Exception inner) : base(message, inner) { }
+        }
     }
 }

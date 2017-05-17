@@ -7,7 +7,7 @@ namespace DataStructures.Trees.Tests
     [TestClass()]
     public class HeapTests
     {
-        Heap h;
+        Heap<int> h;
         int[] a;
 
         [TestInitialize()]
@@ -19,7 +19,7 @@ namespace DataStructures.Trees.Tests
         [TestMethod()]
         public void HeapTest()
         {
-            Heap h = new Heap();
+            Heap<int> h = new Heap<int>();
             Assert.AreEqual(10, h.Capacity);
             Assert.IsTrue(h.IsMaxHeap);
         }
@@ -27,7 +27,7 @@ namespace DataStructures.Trees.Tests
         [TestMethod()]
         public void HeapFromCapacityAndTypeTest()
         {
-            Heap h = new Heap(15, false);
+            Heap<int> h = new Heap<int>(15, false);
             Assert.AreEqual(15, h.Capacity);
             Assert.IsTrue(h.IsMinHeap);
         }
@@ -35,7 +35,7 @@ namespace DataStructures.Trees.Tests
         [TestMethod()]
         public void HeapFromArrayAndTypeTest()
         {
-            Heap h = new Heap(Helpers.BuildRandomArray(25), false);
+            Heap<int> h = new Heap<int>(Helpers.BuildRandomArray(25), false);
             Assert.AreEqual(25, h.Capacity);
             Assert.AreEqual(25, h.HeapSize);
             Assert.IsTrue(h.IsMinHeap);
@@ -44,7 +44,7 @@ namespace DataStructures.Trees.Tests
         [TestMethod()]
         public void CreateMaxHeapTest()
         {
-            Heap h = Heap.CreateMaxHeap(12);
+            Heap<int> h = Heap<int>.CreateMaxHeap(12);
             Assert.AreEqual(12, h.Capacity);
             Assert.IsTrue(h.IsMaxHeap);
         }
@@ -52,7 +52,7 @@ namespace DataStructures.Trees.Tests
         [TestMethod()]
         public void CreateMinHeapTest()
         {
-            Heap h = Heap.CreateMinHeap(12);
+            Heap<int> h = Heap<int>.CreateMinHeap(12);
             Assert.AreEqual(12, h.Capacity);
             Assert.IsTrue(h.IsMinHeap);
         }
@@ -61,7 +61,7 @@ namespace DataStructures.Trees.Tests
         public void MaxHeapifyTest()
         {
             a = Helpers.BuildRandomArray(30);
-            h = Heap.MaxHeapify(a);
+            h = Heap<int>.MaxHeapify(a);
 
             int[] result = h.ExportArray();
 
@@ -88,7 +88,7 @@ namespace DataStructures.Trees.Tests
         public void MinHeapifyTest()
         {
             a = Helpers.BuildRandomArray(30);
-            h = Heap.MinHeapify(a);
+            h = Heap<int>.MinHeapify(a);
 
             int[] result = h.ExportArray();
 
@@ -119,7 +119,7 @@ namespace DataStructures.Trees.Tests
         [TestMethod()]
         public void PushTest()
         {
-            Heap h = new Heap();
+            Heap<int> h = new Heap<int>();
             h.Push(5);
             h.Push(70);
             h.Push(10);
@@ -131,7 +131,7 @@ namespace DataStructures.Trees.Tests
         [TestMethod()]
         public void PeekTest()
         {
-            Heap h = new Heap();
+            Heap<int> h = new Heap<int>();
             h.Push(5);
             Assert.AreEqual(5, h.Peek());
             Assert.AreEqual(1, h.HeapSize);
@@ -140,7 +140,7 @@ namespace DataStructures.Trees.Tests
         [TestMethod()]
         public void PopTest()
         {
-            Heap h = new Heap();
+            Heap<int> h = new Heap<int>();
             h.Push(4);
             Assert.AreEqual(4, h.Pop());
             Assert.IsTrue(h.IsEmpty);
@@ -149,7 +149,7 @@ namespace DataStructures.Trees.Tests
         [TestMethod()]
         public void ExportArrayTest()
         {
-            h = Heap.MaxHeapify(Helpers.BuildRandomArray(8));
+            h = Heap<int>.MaxHeapify(Helpers.BuildRandomArray(8));
             a = h.ExportArray();
             h.Push(1);
             h.Push(2);
@@ -161,7 +161,7 @@ namespace DataStructures.Trees.Tests
         public void SortAscTest()
         {
             a = Helpers.BuildRandomArray(30);
-            h = Heap.MaxHeapify(a);
+            h = Heap<int>.MaxHeapify(a);
 
             int[] heapResult = h.ExportArray();
 
@@ -180,7 +180,7 @@ namespace DataStructures.Trees.Tests
         public void SortDescTest()
         {
             a = Helpers.BuildRandomArray(30);
-            h = Heap.MinHeapify(a);
+            h = Heap<int>.MinHeapify(a);
 
             int[] heapResult = h.ExportArray();
 
@@ -199,7 +199,7 @@ namespace DataStructures.Trees.Tests
         public void HeapifyTest()
         {
             a = Helpers.BuildRandomArray(30);
-            h = Heap.MaxHeapify(a);
+            h = Heap<int>.MaxHeapify(a);
 
             h.Sort();
             int[] sortResult = h.ExportArray();
@@ -239,7 +239,7 @@ namespace DataStructures.Trees.Tests
         public void ReHeapifyMaxTest()
         {
             a = Helpers.BuildRandomArray(30);
-            h = Heap.MinHeapify(a);
+            h = Heap<int>.MinHeapify(a);
 
             Assert.IsTrue(h.IsMinHeap);
             Assert.AreEqual(30, h.HeapSize);
@@ -255,7 +255,7 @@ namespace DataStructures.Trees.Tests
         public void ReHeapifyMinTest()
         {
             a = Helpers.BuildRandomArray(30);
-            h = Heap.MaxHeapify(a);
+            h = Heap<int>.MaxHeapify(a);
 
             Assert.IsTrue(h.IsMaxHeap);
             Assert.AreEqual(30, h.HeapSize);
