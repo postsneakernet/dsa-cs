@@ -63,7 +63,7 @@ namespace DataStructures.Graphs
             return neighbors;
         }
 
-        // if undirected, adding edge (A-B) will also add (B-A)
+        // if undirected, adding edge (A-B) will also add edge (B-A)
         public override void AddEdge(Edge e)
         {
             ThrowIfNotExists(e.Source, e.Destination);
@@ -81,7 +81,7 @@ namespace DataStructures.Graphs
             }
         }
 
-        // if undirected, removing edge (A-B) will also remove (B-A)
+        // if undirected, removing edge (A-B) will also remove edge (B-A)
         public override void RemoveEdge(Edge e)
         {
             ThrowIfNotExists(e.Source, e.Destination);

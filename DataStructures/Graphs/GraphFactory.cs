@@ -1,5 +1,4 @@
-﻿using DataStructures.Lists;
-using DataStructures.Maps;
+﻿using DataStructures.Maps;
 using DataStructures.Trees;
 using System;
 
@@ -10,6 +9,7 @@ namespace DataStructures.Graphs
         public static Graph CreateGraph(GraphConfig gc)
         {
             Graph graph;
+
             if (gc.IsDense)
             {
                 graph = new DenseGraph(gc.Vertices, gc.Edges, gc.IsDirected, gc.HasNegativeWeight);
