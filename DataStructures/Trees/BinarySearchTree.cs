@@ -1,10 +1,11 @@
 ﻿using DataStructures.Lists;
+using DataStructures.Maps;
 using System;
-
+using System.Collections;
 
 namespace DataStructures.Trees
 {
-    public class BinarySearchTree<T> : System.Collections.IEnumerable where T : IComparable
+    public class BinarySearchTree<T> : ISet<T> where T : IComparable
     {
         protected INode<T> _root;
 
@@ -18,6 +19,8 @@ namespace DataStructures.Trees
 
         public bool IsReversed { get { return _reversed; } }
 
+        public int Size { get { return GetSize(); } }
+
         public BinarySearchTree() : this("bst") { }
 
         public BinarySearchTree(string treeType)
@@ -26,12 +29,22 @@ namespace DataStructures.Trees
             rnd = new Random();
         }
 
+        public static BinarySearchTree<T> ShallowSetCopy(ISet<T> originalSet)
+        {
+            BinarySearchTree<T> set = new BinarySearchTree<T>();
+            foreach (T item in originalSet)
+            {
+                set.Insert(item);
+            }
+            return set;
+        }
+
         protected INode<T> GetNodeImplementation(T item)
         {
             return NodeFactory<T>.GetNodeImplementation(_treeType, item);
         }
 
-        public bool Search(T item) { return Search(Root, item); }
+        public bool Contains(T item) { return Contains(Root, item); }
 
         public virtual void Insert(T item)
         {
@@ -47,7 +60,7 @@ namespace DataStructures.Trees
         
         public virtual bool Remove(T item) { return Remove(Root, item); }
 
-        public System.Collections.IEnumerator GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             INode<T> node = Root;
             var s = new Stack<INode<T>>();
@@ -71,7 +84,32 @@ namespace DataStructures.Trees
             }
         }
 
-        private bool Search(INode<T> node, T item)
+        protected int GetSize()
+        {
+            int size = 0;
+            INode<T> node = Root;
+            var s = new Stack<INode<T>>();
+
+            while (node != null || !s.IsEmpty)
+            {
+                if (node != null)
+                {
+                    s.Push(node);
+                    node = node.Left;
+                }
+
+                if (node == null && !s.IsEmpty)
+                {
+                    node = s.Pop();
+                    node = node.Right;
+                    ++size;
+                }
+            }
+
+            return size;
+        }
+
+        private bool Contains(INode<T> node, T item)
         {
             if (node == null)
             {
@@ -79,11 +117,11 @@ namespace DataStructures.Trees
             }
             else if (item.CompareTo(node.Item) < 0)
             {
-                return Search(node.Left, item);
+                return Contains(node.Left, item);
             }
             else if (item.CompareTo(node.Item) > 0)
             {
-                return Search(node.Right, item);
+                return Contains(node.Right, item);
             }
             else
             {

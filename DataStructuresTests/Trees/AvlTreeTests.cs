@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataStructures.Trees;
 using DataStructures.Lists;
 using System;
 
@@ -14,6 +13,12 @@ namespace DataStructures.Trees.Tests
         public void TestInit()
         {
             tree = new AvlTree<int>();
+        }
+
+        [TestMethod()]
+        public void ShallowSetCopyTest()
+        {
+            Assert.Fail();
         }
 
         [TestMethod()]

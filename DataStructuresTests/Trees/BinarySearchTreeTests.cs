@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataStructures.Trees;
 using DataStructures.Lists;
 using System;
 
@@ -17,32 +16,38 @@ namespace DataStructures.Trees.Tests
         }
 
         [TestMethod()]
-        public void SearchTest()
+        public void ShallowSetCopyTest()
         {
-            Assert.IsTrue(tree.Search(2) == false);
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void ContainsTest()
+        {
+            Assert.IsTrue(tree.Contains(2) == false);
 
             tree.Insert(5);
-            Assert.IsTrue(tree.Search(5) == true);
+            Assert.IsTrue(tree.Contains(5) == true);
 
-            Assert.IsTrue(tree.Search(2) == false);
+            Assert.IsTrue(tree.Contains(2) == false);
 
             tree.Insert(2);
-            Assert.IsTrue(tree.Search(2) == true);
+            Assert.IsTrue(tree.Contains(2) == true);
 
             tree.Insert(9);
-            Assert.IsTrue(tree.Search(9) == true);
+            Assert.IsTrue(tree.Contains(9) == true);
 
             tree.Insert(1);
-            Assert.IsTrue(tree.Search(1) == true);
+            Assert.IsTrue(tree.Contains(1) == true);
 
             tree.Insert(3);
-            Assert.IsTrue(tree.Search(3) == true);
+            Assert.IsTrue(tree.Contains(3) == true);
 
             tree.Insert(10);
-            Assert.IsTrue(tree.Search(10) == true);
+            Assert.IsTrue(tree.Contains(10) == true);
 
             tree.Insert(7);
-            Assert.IsTrue(tree.Search(7) == true);
+            Assert.IsTrue(tree.Contains(7) == true);
         }
 
         [TestMethod()]
@@ -185,6 +190,12 @@ namespace DataStructures.Trees.Tests
                 Console.WriteLine("a[{0}]: {1}, a[{2}]: {3}", i - 1, inOrder.Get(i - 1), i, inOrder.Get(i));
                 Assert.IsTrue(inOrder.Get(i - 1) <= inOrder.Get(i));
             }
+        }
+
+        [TestMethod()]
+        public void SizeTest() // check property
+        {
+            Assert.Fail();
         }
     }
 }

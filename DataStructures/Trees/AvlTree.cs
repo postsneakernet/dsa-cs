@@ -1,10 +1,21 @@
-﻿using System;
+﻿using DataStructures.Maps;
+using System;
 
 namespace DataStructures.Trees
 {
     public class AvlTree<T> : BinarySearchTree<T> where T : IComparable
     {
         public AvlTree() : base("avl") { }
+
+        public static new AvlTree<T> ShallowSetCopy(ISet<T> originalSet)
+        {
+            AvlTree<T> set = new AvlTree<T>();
+            foreach (T item in originalSet)
+            {
+                set.Insert(item);
+            }
+            return set;
+        }
 
         public override void Insert(T item)
         {
