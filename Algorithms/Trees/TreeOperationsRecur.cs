@@ -6,14 +6,14 @@ namespace Algorithms.Trees
 {
     public class TreeOperationsRecur<T> where T : IComparable
     {
-        public static ArrayList<T> InOrderTraversal(INode<T> node)
+        public static IList<T> InOrderTraversal(INode<T> node)
         {
             var list = new ArrayList<T>();
             InOrderTraversal(node, list);
             return list;
         }
 
-        private static void InOrderTraversal(INode<T> node, ArrayList<T> list)
+        private static void InOrderTraversal(INode<T> node, IList<T> list)
         {
             if (node == null) { return; }
             InOrderTraversal(node.Left, list);
@@ -21,14 +21,14 @@ namespace Algorithms.Trees
             InOrderTraversal(node.Right, list);
         }
 
-        public static ArrayList<T> PreOrderTraversal(INode<T> node)
+        public static IList<T> PreOrderTraversal(INode<T> node)
         {
             var list = new ArrayList<T>();
             PreOrderTraversal(node, list);
             return list;
         }
 
-        private static void PreOrderTraversal(INode<T> node, ArrayList<T> list)
+        private static void PreOrderTraversal(INode<T> node, IList<T> list)
         {
             if (node == null) { return; }
             list.Add(node.Item);
@@ -36,7 +36,7 @@ namespace Algorithms.Trees
             PreOrderTraversal(node.Right, list);
         }
 
-        public static ArrayList<T> PostOrderTraversal(INode<T> node)
+        public static IList<T> PostOrderTraversal(INode<T> node)
         {
             var list = new ArrayList<T>();
             PostOrderTraversal(node, list);

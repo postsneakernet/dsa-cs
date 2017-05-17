@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataStructures.Lists;
 using DSA.Common;
-using System;
 
 namespace DataStructures.Lists.Tests
 {

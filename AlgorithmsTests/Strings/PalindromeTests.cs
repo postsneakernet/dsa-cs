@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Algorithms.Strings;
 using System;
 
 namespace Algorithms.Strings.Tests

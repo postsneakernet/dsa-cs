@@ -7,7 +7,7 @@ namespace Algorithms.Trees
 {
     public class TreeOperationsIter<T> where T : IComparable
     {
-        public static ArrayList<T> LevelOrderTraversalAsPbt(INode<T> node)
+        public static IList<T> LevelOrderTraversalAsPbt(INode<T> node)
         {
             var pbt = new ArrayList<T>();
             var q = new Queue<INode<T>>();

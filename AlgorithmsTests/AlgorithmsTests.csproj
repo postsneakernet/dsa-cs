@@ -57,6 +57,7 @@
     <Compile Include="Sorting\BubbleSortTests.cs" />
     <Compile Include="Sorting\InsertionSortTests.cs" />
     <Compile Include="Sorting\MergeSortTests.cs" />
+    <Compile Include="Sorting\QuickSortTests.cs" />
     <Compile Include="Sorting\SelectionSortTests.cs" />
     <Compile Include="Strings\PalindromeTests.cs" />
     <Compile Include="Strings\ReverseTests.cs" />

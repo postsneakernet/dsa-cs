@@ -5,13 +5,15 @@ using System;
 namespace Algorithms.Sorting.Tests
 {
     [TestClass()]
-    public class BubbleSortTests
+    public class QuickSortTests
     {
         [TestMethod()]
         public void SortTest()
         {
-            int[] a = Helpers.BuildRandomArray(50);
-            BubbleSort.Sort(a);
+            int[] a = Helpers.BuildRandomArray(30);
+            Helpers.PrintArray(a);
+            InsertionSort.Sort(a);
+            Helpers.PrintArray(a);
 
             for (int i = 1; i < a.Length; ++i)
             {
