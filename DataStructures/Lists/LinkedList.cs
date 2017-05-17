@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace DataStructures.Lists
 {
-    public class LinkedList<T> : System.Collections.IEnumerable
+    public class LinkedList<T> : IList<T>
     {
         private Node<T> _head;
 
         public int Size { get { return GetSize(); } }
 
         public LinkedList() { }
+
+        public static LinkedList<T> ShallowListCopy(IList<T> originalList)
+        {
+            LinkedList<T> list = new LinkedList<T>();
+            foreach (T item in originalList)
+            {
+                list.Add(item);
+            }
+            return list;
+        }
 
         public T Get(int index)
         {
@@ -202,6 +211,25 @@ namespace DataStructures.Lists
             }
         }
 
+        public int FindFirstOccurrence(T item)
+        {
+            int index = -1;
+
+            /*
+            for (int i = 0; i < Size; ++i)
+            {
+                if (_items[i].CompareTo(item) == 0)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            */
+            throw new NotImplementedException();
+
+            return index;
+        }
+
         public void Reverse()
         {
             if (_head == null || _head.Next == null) { return; }
@@ -221,7 +249,7 @@ namespace DataStructures.Lists
             _head = prev;
         }
 
-        public System.Collections.IEnumerator GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             Node<T> temp = _head;
 

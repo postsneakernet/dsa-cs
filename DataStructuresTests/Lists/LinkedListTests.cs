@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataStructures.Lists;
 using System;
-using System.Collections.Generic;
 
 namespace DataStructures.Lists.Tests
 {
@@ -14,6 +12,12 @@ namespace DataStructures.Lists.Tests
         public void TestInit()
         {
             list = new LinkedList<int>();
+        }
+
+        [TestMethod()]
+        public void ShallowListCopyTest()
+        {
+            Assert.Fail();
         }
 
         [TestMethod()]

@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataStructures.Lists;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructures.Lists.Tests
 {
@@ -20,6 +14,12 @@ namespace DataStructures.Lists.Tests
             al.Add(1);
             al.Add(2);
             al.Add(3);
+        }
+
+        [TestMethod()]
+        public void ShallowListCopyTest()
+        {
+            Assert.Fail();
         }
 
         [TestMethod()]

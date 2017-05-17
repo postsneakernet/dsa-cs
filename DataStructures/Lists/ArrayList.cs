@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections;
 
 namespace DataStructures.Lists
 {
-    public class ArrayList<T> : System.Collections.IEnumerable where T : IComparable
+    public class ArrayList<T> : IList<T> where T : IComparable
     {
         private const int _capacity = 10;
         private T[] _items;
@@ -10,6 +11,16 @@ namespace DataStructures.Lists
 
         public ArrayList() : this(_capacity) { }
         public ArrayList(int capacity) { InitializeArray(capacity); }
+
+        public static ArrayList<T> ShallowListCopy(IList<T> originalList)
+        {
+            ArrayList<T> list = new ArrayList<T>();
+            foreach (T item in originalList)
+            {
+                list.Add(item);
+            }
+            return list;
+        }
 
         public int Size { get { return _end + 1; } }
 
@@ -116,7 +127,7 @@ namespace DataStructures.Lists
             Resize(Size);
         }
 
-        public System.Collections.IEnumerator GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < Size; ++i)
             {
