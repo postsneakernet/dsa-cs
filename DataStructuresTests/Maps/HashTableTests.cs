@@ -27,6 +27,13 @@ namespace DataStructures.Maps.Tests
             }
         }
 
+
+        [TestMethod()]
+        public void ShallowHashTableCopyTest()
+        {
+            Assert.Fail();
+        }
+
         [TestMethod()]
         public void HashTableTest()
         {
@@ -92,14 +99,23 @@ namespace DataStructures.Maps.Tests
         }
 
         [TestMethod()]
+        public void ClearTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
         public void GetKeySetTest()
         {
+            Assert.Fail();
+            /*
             string[] keySet = ht.GetKeySet();
 
             foreach (var s in keySet)
             {
                 Assert.IsTrue(Array.IndexOf(keys, s) > -1);
             }
+            */
         }
     }
 }

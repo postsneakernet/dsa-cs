@@ -57,6 +57,7 @@
     <Compile Include="Graphs\BreadthFirstSearch.cs" />
     <Compile Include="Graphs\DepthFirstSearch.cs" />
     <Compile Include="Graphs\Dijkstra.cs" />
+    <Compile Include="Graphs\ShortestPath.cs" />
     <Compile Include="Graphs\TopologicalSort.cs" />
     <Compile Include="Math\BaseConversion.cs" />
     <Compile Include="Math\Euclid.cs" />

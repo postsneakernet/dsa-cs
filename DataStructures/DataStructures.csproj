@@ -62,7 +62,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trees\AvlTree.cs" />
     <Compile Include="Trees\BinarySearchTree.cs" />
-    <Compile Include="Trees\Heap.cs" />
+    <Compile Include="Trees\FibonacciHeap.cs" />
+    <Compile Include="Trees\BinaryHeap.cs" />
     <Compile Include="Trees\INode.cs" />
     <Compile Include="Trees\RedBlackTree.cs" />
     <Compile Include="Trees\Treap.cs" />

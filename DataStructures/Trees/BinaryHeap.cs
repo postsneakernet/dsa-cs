@@ -2,7 +2,7 @@
 
 namespace DataStructures.Trees
 {
-    public class Heap<T> where T : IComparable
+    public class BinaryHeap<T> where T : IComparable
     {
         private const int _capacity = 10;
         private T[] _items;
@@ -10,9 +10,9 @@ namespace DataStructures.Trees
         private int _end; // Index of last item
         private int _heapSize;
 
-        public Heap() : this(_capacity, true) { }
+        public BinaryHeap() : this(_capacity, true) { }
 
-        public Heap(int capacity, bool isMaxHeap)
+        public BinaryHeap(int capacity, bool isMaxHeap)
         {
             if (capacity < 1)
             {
@@ -25,16 +25,16 @@ namespace DataStructures.Trees
             _heapSize = 0;
         }
 
-        public Heap(T[] a, bool isMaxHeap)
+        public BinaryHeap(T[] a, bool isMaxHeap)
         {
             ReHeapify(a, isMaxHeap);
         }
 
-        public static Heap<T> CreateMaxHeap(int capacity = _capacity) { return new Heap<T>(capacity, true); }
-        public static Heap<T> CreateMinHeap(int capacity = _capacity) { return new Heap<T>(capacity, false); }
+        public static BinaryHeap<T> CreateMaxHeap(int capacity = _capacity) { return new BinaryHeap<T>(capacity, true); }
+        public static BinaryHeap<T> CreateMinHeap(int capacity = _capacity) { return new BinaryHeap<T>(capacity, false); }
 
-        public static Heap<T> MaxHeapify(T[] a) { return new Heap<T>(a, true); }
-        public static Heap<T> MinHeapify(T[] a) { return new Heap<T>(a, false); }
+        public static BinaryHeap<T> MaxHeapify(T[] a) { return new BinaryHeap<T>(a, true); }
+        public static BinaryHeap<T> MinHeapify(T[] a) { return new BinaryHeap<T>(a, false); }
 
         public bool IsMaxHeap { get { return _isMaxHeap; } }
         public bool IsMinHeap { get { return !_isMaxHeap; } }

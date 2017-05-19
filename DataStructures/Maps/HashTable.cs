@@ -1,4 +1,6 @@
 ﻿using DataStructures.Lists;
+using DataStructures.Trees;
+using System.Collections;
 
 namespace DataStructures.Maps
 {
@@ -19,6 +21,17 @@ namespace DataStructures.Maps
             _buckets = _initialBuckets;
             _table = new LinkedList<KeyValue<T>>[_buckets];
             _size = 0;
+            _occupied = 0;
+        }
+
+        public static HashTable<T> ShallowHashTableCopy(HashTable<T> originalTable)
+        {
+            HashTable<T> table = new HashTable<T>();
+            foreach (KeyValue<T> kv in originalTable)
+            {
+                table.Put(kv.Key, kv.Value);
+            }
+            return table;
         }
 
         public T Get(string key)
@@ -95,22 +108,40 @@ namespace DataStructures.Maps
             return false;
         }
 
-        public string[] GetKeySet()
+        public void Clear()
         {
-            string[] s = new string[Size];
+            _buckets = _initialBuckets;
+            _table = new LinkedList<KeyValue<T>>[_buckets];
+            _size = 0;
+            _occupied = 0;
+        }
 
-            int j = 0;
+        public ISet<string> GetKeySet()
+        {
+            ISet<string> keySet = new AvlTree<string>();
             for (int i = 0; i < _table.Length; ++i)
             {
                 if (_table[i] == null) { continue; }
 
                 foreach (KeyValue<T> kv in _table[i])
                 {
-                    s[j++] = kv.Key;
+                    keySet.Insert(kv.Key);
                 }
             }
+            return keySet;
+        }
 
-            return s;
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < _table.Length; ++i)
+            {
+                if (_table[i] == null) { continue; }
+
+                foreach (KeyValue<T> kv in _table[i])
+                {
+                    yield return kv;
+                }
+            }
         }
 
         private int GenerateHash(string s)
@@ -181,7 +212,7 @@ namespace DataStructures.Maps
         }
     }
 
-    class KeyValue<T>
+    public class KeyValue<T>
     {
         private string _key;
 

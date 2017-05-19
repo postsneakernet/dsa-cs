@@ -6,17 +6,17 @@ namespace DataStructures.Graphs
 {
     public abstract class GraphFactory
     {
-        public static Graph CreateGraph(GraphConfig gc)
+        public static Graph CreateGraph(GraphConfig graphConfig)
         {
             Graph graph;
 
-            if (gc.IsDense)
+            if (graphConfig.IsDense)
             {
-                graph = new DenseGraph(gc.Vertices, gc.Edges, gc.IsDirected, gc.HasNegativeWeight);
+                graph = new DenseGraph(graphConfig.Vertices, graphConfig.Edges, graphConfig.IsDirected, graphConfig.HasNegativeWeight);
             }
             else
             {
-                graph = new SparseGraph(gc.Vertices, gc.Edges, gc.IsDirected, gc.HasNegativeWeight);
+                graph = new SparseGraph(graphConfig.Vertices, graphConfig.Edges, graphConfig.IsDirected, graphConfig.HasNegativeWeight);
             }
 
             return graph;
