@@ -22,6 +22,30 @@ namespace Algorithms.Graphs
             _hasNegativeCycle = false;
         }
 
+        protected virtual void Initialize(string source)
+        {
+            foreach (string v in _graph.Vertices)
+            {
+                _distance.Put(v, int.MaxValue);
+                _previous.Put(v, null);
+            }
+
+            _distance.Put(source, 0);
+        }
+
+        protected virtual bool Relax(string vertex, Edge e)
+        {
+            bool relaxed = false;
+            if (_distance.Get(vertex) + e.Weight < _distance.Get(e.Destination))
+            {
+                relaxed = true;
+                _distance.Put(e.Destination, _distance.Get(vertex) + e.Weight);
+                _previous.Put(e.Destination, vertex);
+            }
+
+            return relaxed;
+        }
+
         public abstract ShortestPathResult Find(string source);
     }
 

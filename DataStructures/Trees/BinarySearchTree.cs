@@ -46,6 +46,14 @@ namespace DataStructures.Trees
 
         public bool Contains(T item) { return Contains(Root, item); }
 
+        public void InsertAll(IEnumerable items)
+        {
+            foreach (T item in items)
+            {
+                this.Insert(item);
+            }
+        }
+
         public virtual void Insert(T item)
         {
             if (Root == null)

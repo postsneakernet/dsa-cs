@@ -43,6 +43,18 @@ namespace DataStructures.Graphs
             ThrowIfNotExists(y);
         }
 
+        public ISet<Edge> GetEdges()
+        {
+            ISet<Edge> edges = new AvlTree<Edge>();
+
+            foreach (string v in Vertices)
+            {
+                edges.InsertAll(GetNeighborsAsEdges(v));
+            }
+
+            return edges;
+        }
+
         public GraphComponents ExportComponents()
         {
             ISet<string> vertices = AvlTree<string>.ShallowSetCopy(_vertices);

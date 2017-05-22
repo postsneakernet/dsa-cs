@@ -19,17 +19,23 @@ namespace Algorithms.Graphs
             _queue = BinaryHeap<VertexDistance>.CreateMinHeap();
         }
 
+        protected override bool Relax(string vertex, Edge e)
+        {
+            bool relaxed = base.Relax(vertex, e);
+
+            if (relaxed)
+            {
+                _queue.Push(new VertexDistance(e.Destination, _distance.Get(e.Destination)));
+            }
+
+            return relaxed;
+        }
+
         public override ShortestPathResult Find(string source)
         {
             Clear();
+            Initialize(source);
 
-            foreach (string v in _graph.Vertices)
-            {
-                _distance.Put(v, int.MaxValue);
-                _previous.Put(v, null);
-            }
-
-            _distance.Put(source, 0);
             _queue.Push(new VertexDistance(source, 0));
 
             while (!_queue.IsEmpty)
@@ -41,12 +47,7 @@ namespace Algorithms.Graphs
                     _visited.Insert(current.Vertex);
                     foreach (Edge e in _graph.GetNeighborsAsEdges(current.Vertex))
                     {
-                        if (_distance.Get(current.Vertex) + e.Weight < _distance.Get(e.Destination))
-                        {
-                            _distance.Put(e.Destination, _distance.Get(current.Vertex) + e.Weight);
-                            _previous.Put(e.Destination, current.Vertex);
-                            _queue.Push(new VertexDistance(e.Destination, _distance.Get(e.Destination)));
-                        }
+                        Relax(current.Vertex, e);
                     }
                 }
             }
